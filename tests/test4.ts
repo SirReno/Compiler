@@ -1,0 +1,1 @@
+const constante: number = 10;

@@ -1,0 +1,10 @@
+(Program -> Statement)
+(Statement -> Input_Statement)
+(Program -> Program)
+(Program -> Statement)
+(Statement -> Output_Statement)
+(Output_Statement -> Expression)
+(Expression -> Simple_expression)
+(Simple_expression -> Term)
+(Term -> Factor)
+Factor -> Value: x

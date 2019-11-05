@@ -1,0 +1,32 @@
+(Program -> Statement)
+(Statement -> Var_Declaration)
+(Var_Declaration -> Type)
+Type -> Value: boolean
+(Var_Declaration -> Expression)
+(Expression -> Simple_expression)
+(Simple_expression -> Term)
+(Term -> Factor)
+(Factor -> Lit_value)
+Lit_value -> Value: false
+(Program -> Program)
+(Program -> Statement)
+(Statement -> Var_Declaration)
+(Var_Declaration -> Type)
+Type -> Value: number
+(Var_Declaration -> Expression)
+(Expression -> Simple_expression)
+(Simple_expression -> Term)
+(Term -> Factor)
+(Factor -> Lit_value)
+Lit_value -> Value: 5
+(Program -> Program)
+(Program -> Statement)
+(Statement -> Var_Declaration)
+(Var_Declaration -> Type)
+Type -> Value: string
+(Var_Declaration -> Expression)
+(Expression -> Simple_expression)
+(Simple_expression -> Term)
+(Term -> Factor)
+(Factor -> Lit_value)
+Lit_value -> Value: "hola"

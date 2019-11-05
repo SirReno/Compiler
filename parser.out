@@ -1,0 +1,1842 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement program
+Rule 2     program -> statement
+Rule 3     statement -> var_declaration
+Rule 4     statement -> const_declaration
+Rule 5     statement -> if_statement
+Rule 6     statement -> while_statement
+Rule 7     statement -> input_statement
+Rule 8     statement -> output_statement
+Rule 9     statement -> function_statement
+Rule 10    var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+Rule 11    const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+Rule 12    if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+Rule 13    if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+Rule 14    while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+Rule 15    input_statement -> READ LPAREN RPAREN SEMI_COLON
+Rule 16    output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON
+Rule 17    function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+Rule 18    type -> NUMBER
+Rule 19    type -> BOOL
+Rule 20    type -> STRING
+Rule 21    expression -> simple_expression
+Rule 22    expression -> OP_MINUS simple_expression
+Rule 23    expression -> logic_expression
+Rule 24    simple_expression -> term OP_PLUS simple_expression
+Rule 25    simple_expression -> term OP_MINUS simple_expression
+Rule 26    simple_expression -> term
+Rule 27    logic_expression -> simple_expression logical_op simple_expression
+Rule 28    logic_expression -> OP_NOT logic_expression
+Rule 29    term -> factor OP_MULT term
+Rule 30    term -> factor OP_DIVIDE term
+Rule 31    term -> factor OP_MOD term
+Rule 32    term -> factor
+Rule 33    factor -> lit_value
+Rule 34    factor -> LPAREN expression RPAREN
+Rule 35    factor -> ID
+Rule 36    logical_op -> OP_AND
+Rule 37    logical_op -> OP_OR
+Rule 38    logical_op -> OP_MORE_OR_EQUAL
+Rule 39    logical_op -> OP_LESS_OR_EQUAL
+Rule 40    logical_op -> OP_MORE_THAN
+Rule 41    logical_op -> OP_LESS_THAN
+Rule 42    logical_op -> OP_NOT_EQUALS
+Rule 43    logical_op -> OP_EQUALS
+Rule 44    lit_value -> TRUE
+Rule 45    lit_value -> FALSE
+Rule 46    lit_value -> LIT_NUMBER
+Rule 47    lit_value -> LIT_STRING
+
+Terminals, with rules where they appear
+
+BOOL                 : 19
+CONST                : 11
+CURLYLEFT            : 12 13 13 14 17
+CURLYRIGHT           : 12 13 13 14 17
+ELSE                 : 13
+FALSE                : 45
+FUNCTION             : 17
+ID                   : 10 11 17 35
+IF                   : 12 13
+LET                  : 10
+LIT_NUMBER           : 46
+LIT_STRING           : 47
+LPAREN               : 12 13 14 15 16 17 34
+NUMBER               : 18
+OP_AND               : 36
+OP_DIVIDE            : 30
+OP_EQUALS            : 43
+OP_LESS_OR_EQUAL     : 39
+OP_LESS_THAN         : 41
+OP_MINUS             : 22 25
+OP_MOD               : 31
+OP_MORE_OR_EQUAL     : 38
+OP_MORE_THAN         : 40
+OP_MULT              : 29
+OP_NOT               : 28
+OP_NOT_EQUALS        : 42
+OP_OR                : 37
+OP_PLUS              : 24
+OP_TYPE_ASSIGN       : 10 11
+OP_VALUE_ASSIGN      : 10 11
+PRINT                : 16
+READ                 : 15
+RETURN               : 17
+RPAREN               : 12 13 14 15 16 17 34
+SEMI_COLON           : 10 11 15 16 17
+STRING               : 20
+TRUE                 : 44
+WHILE                : 14
+error                : 
+
+Nonterminals, with rules where they appear
+
+const_declaration    : 4
+expression           : 10 11 12 13 14 16 17 34
+factor               : 29 30 31 32
+function_statement   : 9
+if_statement         : 5
+input_statement      : 7
+lit_value            : 33
+logic_expression     : 23 28
+logical_op           : 27
+output_statement     : 8
+program              : 1 12 13 13 14 0
+simple_expression    : 21 22 24 25 27 27
+statement            : 1 2 17
+term                 : 24 25 26 29 30 31
+type                 : 10 11
+var_declaration      : 3
+while_statement      : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement program
+    (2) program -> . statement
+    (3) statement -> . var_declaration
+    (4) statement -> . const_declaration
+    (5) statement -> . if_statement
+    (6) statement -> . while_statement
+    (7) statement -> . input_statement
+    (8) statement -> . output_statement
+    (9) statement -> . function_statement
+    (10) var_declaration -> . LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (11) const_declaration -> . CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (12) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+    (14) while_statement -> . WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (15) input_statement -> . READ LPAREN RPAREN SEMI_COLON
+    (16) output_statement -> . PRINT LPAREN expression RPAREN SEMI_COLON
+    (17) function_statement -> . FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    LET             shift and go to state 10
+    CONST           shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    READ            shift and go to state 14
+    PRINT           shift and go to state 15
+    FUNCTION        shift and go to state 16
+
+    program                        shift and go to state 1
+    statement                      shift and go to state 2
+    var_declaration                shift and go to state 3
+    const_declaration              shift and go to state 4
+    if_statement                   shift and go to state 5
+    while_statement                shift and go to state 6
+    input_statement                shift and go to state 7
+    output_statement               shift and go to state 8
+    function_statement             shift and go to state 9
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement . program
+    (2) program -> statement .
+    (1) program -> . statement program
+    (2) program -> . statement
+    (3) statement -> . var_declaration
+    (4) statement -> . const_declaration
+    (5) statement -> . if_statement
+    (6) statement -> . while_statement
+    (7) statement -> . input_statement
+    (8) statement -> . output_statement
+    (9) statement -> . function_statement
+    (10) var_declaration -> . LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (11) const_declaration -> . CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (12) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+    (14) while_statement -> . WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (15) input_statement -> . READ LPAREN RPAREN SEMI_COLON
+    (16) output_statement -> . PRINT LPAREN expression RPAREN SEMI_COLON
+    (17) function_statement -> . FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    $end            reduce using rule 2 (program -> statement .)
+    CURLYRIGHT      reduce using rule 2 (program -> statement .)
+    LET             shift and go to state 10
+    CONST           shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    READ            shift and go to state 14
+    PRINT           shift and go to state 15
+    FUNCTION        shift and go to state 16
+
+    statement                      shift and go to state 2
+    program                        shift and go to state 17
+    var_declaration                shift and go to state 3
+    const_declaration              shift and go to state 4
+    if_statement                   shift and go to state 5
+    while_statement                shift and go to state 6
+    input_statement                shift and go to state 7
+    output_statement               shift and go to state 8
+    function_statement             shift and go to state 9
+
+state 3
+
+    (3) statement -> var_declaration .
+
+    LET             reduce using rule 3 (statement -> var_declaration .)
+    CONST           reduce using rule 3 (statement -> var_declaration .)
+    IF              reduce using rule 3 (statement -> var_declaration .)
+    WHILE           reduce using rule 3 (statement -> var_declaration .)
+    READ            reduce using rule 3 (statement -> var_declaration .)
+    PRINT           reduce using rule 3 (statement -> var_declaration .)
+    FUNCTION        reduce using rule 3 (statement -> var_declaration .)
+    $end            reduce using rule 3 (statement -> var_declaration .)
+    CURLYRIGHT      reduce using rule 3 (statement -> var_declaration .)
+    RETURN          reduce using rule 3 (statement -> var_declaration .)
+
+
+state 4
+
+    (4) statement -> const_declaration .
+
+    LET             reduce using rule 4 (statement -> const_declaration .)
+    CONST           reduce using rule 4 (statement -> const_declaration .)
+    IF              reduce using rule 4 (statement -> const_declaration .)
+    WHILE           reduce using rule 4 (statement -> const_declaration .)
+    READ            reduce using rule 4 (statement -> const_declaration .)
+    PRINT           reduce using rule 4 (statement -> const_declaration .)
+    FUNCTION        reduce using rule 4 (statement -> const_declaration .)
+    $end            reduce using rule 4 (statement -> const_declaration .)
+    CURLYRIGHT      reduce using rule 4 (statement -> const_declaration .)
+    RETURN          reduce using rule 4 (statement -> const_declaration .)
+
+
+state 5
+
+    (5) statement -> if_statement .
+
+    LET             reduce using rule 5 (statement -> if_statement .)
+    CONST           reduce using rule 5 (statement -> if_statement .)
+    IF              reduce using rule 5 (statement -> if_statement .)
+    WHILE           reduce using rule 5 (statement -> if_statement .)
+    READ            reduce using rule 5 (statement -> if_statement .)
+    PRINT           reduce using rule 5 (statement -> if_statement .)
+    FUNCTION        reduce using rule 5 (statement -> if_statement .)
+    $end            reduce using rule 5 (statement -> if_statement .)
+    CURLYRIGHT      reduce using rule 5 (statement -> if_statement .)
+    RETURN          reduce using rule 5 (statement -> if_statement .)
+
+
+state 6
+
+    (6) statement -> while_statement .
+
+    LET             reduce using rule 6 (statement -> while_statement .)
+    CONST           reduce using rule 6 (statement -> while_statement .)
+    IF              reduce using rule 6 (statement -> while_statement .)
+    WHILE           reduce using rule 6 (statement -> while_statement .)
+    READ            reduce using rule 6 (statement -> while_statement .)
+    PRINT           reduce using rule 6 (statement -> while_statement .)
+    FUNCTION        reduce using rule 6 (statement -> while_statement .)
+    $end            reduce using rule 6 (statement -> while_statement .)
+    CURLYRIGHT      reduce using rule 6 (statement -> while_statement .)
+    RETURN          reduce using rule 6 (statement -> while_statement .)
+
+
+state 7
+
+    (7) statement -> input_statement .
+
+    LET             reduce using rule 7 (statement -> input_statement .)
+    CONST           reduce using rule 7 (statement -> input_statement .)
+    IF              reduce using rule 7 (statement -> input_statement .)
+    WHILE           reduce using rule 7 (statement -> input_statement .)
+    READ            reduce using rule 7 (statement -> input_statement .)
+    PRINT           reduce using rule 7 (statement -> input_statement .)
+    FUNCTION        reduce using rule 7 (statement -> input_statement .)
+    $end            reduce using rule 7 (statement -> input_statement .)
+    CURLYRIGHT      reduce using rule 7 (statement -> input_statement .)
+    RETURN          reduce using rule 7 (statement -> input_statement .)
+
+
+state 8
+
+    (8) statement -> output_statement .
+
+    LET             reduce using rule 8 (statement -> output_statement .)
+    CONST           reduce using rule 8 (statement -> output_statement .)
+    IF              reduce using rule 8 (statement -> output_statement .)
+    WHILE           reduce using rule 8 (statement -> output_statement .)
+    READ            reduce using rule 8 (statement -> output_statement .)
+    PRINT           reduce using rule 8 (statement -> output_statement .)
+    FUNCTION        reduce using rule 8 (statement -> output_statement .)
+    $end            reduce using rule 8 (statement -> output_statement .)
+    CURLYRIGHT      reduce using rule 8 (statement -> output_statement .)
+    RETURN          reduce using rule 8 (statement -> output_statement .)
+
+
+state 9
+
+    (9) statement -> function_statement .
+
+    LET             reduce using rule 9 (statement -> function_statement .)
+    CONST           reduce using rule 9 (statement -> function_statement .)
+    IF              reduce using rule 9 (statement -> function_statement .)
+    WHILE           reduce using rule 9 (statement -> function_statement .)
+    READ            reduce using rule 9 (statement -> function_statement .)
+    PRINT           reduce using rule 9 (statement -> function_statement .)
+    FUNCTION        reduce using rule 9 (statement -> function_statement .)
+    $end            reduce using rule 9 (statement -> function_statement .)
+    CURLYRIGHT      reduce using rule 9 (statement -> function_statement .)
+    RETURN          reduce using rule 9 (statement -> function_statement .)
+
+
+state 10
+
+    (10) var_declaration -> LET . ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+
+    ID              shift and go to state 18
+
+
+state 11
+
+    (11) const_declaration -> CONST . ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+
+    ID              shift and go to state 19
+
+
+state 12
+
+    (12) if_statement -> IF . LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> IF . LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+
+    LPAREN          shift and go to state 20
+
+
+state 13
+
+    (14) while_statement -> WHILE . LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+
+    LPAREN          shift and go to state 21
+
+
+state 14
+
+    (15) input_statement -> READ . LPAREN RPAREN SEMI_COLON
+
+    LPAREN          shift and go to state 22
+
+
+state 15
+
+    (16) output_statement -> PRINT . LPAREN expression RPAREN SEMI_COLON
+
+    LPAREN          shift and go to state 23
+
+
+state 16
+
+    (17) function_statement -> FUNCTION . ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    ID              shift and go to state 24
+
+
+state 17
+
+    (1) program -> statement program .
+
+    $end            reduce using rule 1 (program -> statement program .)
+    CURLYRIGHT      reduce using rule 1 (program -> statement program .)
+
+
+state 18
+
+    (10) var_declaration -> LET ID . OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+
+    OP_TYPE_ASSIGN  shift and go to state 25
+
+
+state 19
+
+    (11) const_declaration -> CONST ID . OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+
+    OP_TYPE_ASSIGN  shift and go to state 26
+
+
+state 20
+
+    (12) if_statement -> IF LPAREN . expression RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> IF LPAREN . expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+    (21) expression -> . simple_expression
+    (22) expression -> . OP_MINUS simple_expression
+    (23) expression -> . logic_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (27) logic_expression -> . simple_expression logical_op simple_expression
+    (28) logic_expression -> . OP_NOT logic_expression
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    OP_MINUS        shift and go to state 30
+    OP_NOT          shift and go to state 33
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    expression                     shift and go to state 28
+    simple_expression              shift and go to state 29
+    logic_expression               shift and go to state 31
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 21
+
+    (14) while_statement -> WHILE LPAREN . expression RPAREN CURLYLEFT program CURLYRIGHT
+    (21) expression -> . simple_expression
+    (22) expression -> . OP_MINUS simple_expression
+    (23) expression -> . logic_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (27) logic_expression -> . simple_expression logical_op simple_expression
+    (28) logic_expression -> . OP_NOT logic_expression
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    OP_MINUS        shift and go to state 30
+    OP_NOT          shift and go to state 33
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    expression                     shift and go to state 41
+    simple_expression              shift and go to state 29
+    logic_expression               shift and go to state 31
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 22
+
+    (15) input_statement -> READ LPAREN . RPAREN SEMI_COLON
+
+    RPAREN          shift and go to state 42
+
+
+state 23
+
+    (16) output_statement -> PRINT LPAREN . expression RPAREN SEMI_COLON
+    (21) expression -> . simple_expression
+    (22) expression -> . OP_MINUS simple_expression
+    (23) expression -> . logic_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (27) logic_expression -> . simple_expression logical_op simple_expression
+    (28) logic_expression -> . OP_NOT logic_expression
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    OP_MINUS        shift and go to state 30
+    OP_NOT          shift and go to state 33
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    expression                     shift and go to state 43
+    simple_expression              shift and go to state 29
+    logic_expression               shift and go to state 31
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 24
+
+    (17) function_statement -> FUNCTION ID . LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    LPAREN          shift and go to state 44
+
+
+state 25
+
+    (10) var_declaration -> LET ID OP_TYPE_ASSIGN . type OP_VALUE_ASSIGN expression SEMI_COLON
+    (18) type -> . NUMBER
+    (19) type -> . BOOL
+    (20) type -> . STRING
+
+    NUMBER          shift and go to state 46
+    BOOL            shift and go to state 47
+    STRING          shift and go to state 48
+
+    type                           shift and go to state 45
+
+state 26
+
+    (11) const_declaration -> CONST ID OP_TYPE_ASSIGN . type OP_VALUE_ASSIGN expression SEMI_COLON
+    (18) type -> . NUMBER
+    (19) type -> . BOOL
+    (20) type -> . STRING
+
+    NUMBER          shift and go to state 46
+    BOOL            shift and go to state 47
+    STRING          shift and go to state 48
+
+    type                           shift and go to state 49
+
+state 27
+
+    (34) factor -> LPAREN . expression RPAREN
+    (21) expression -> . simple_expression
+    (22) expression -> . OP_MINUS simple_expression
+    (23) expression -> . logic_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (27) logic_expression -> . simple_expression logical_op simple_expression
+    (28) logic_expression -> . OP_NOT logic_expression
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    OP_MINUS        shift and go to state 30
+    OP_NOT          shift and go to state 33
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    expression                     shift and go to state 50
+    simple_expression              shift and go to state 29
+    logic_expression               shift and go to state 31
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 28
+
+    (12) if_statement -> IF LPAREN expression . RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> IF LPAREN expression . RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+
+    RPAREN          shift and go to state 51
+
+
+state 29
+
+    (21) expression -> simple_expression .
+    (27) logic_expression -> simple_expression . logical_op simple_expression
+    (36) logical_op -> . OP_AND
+    (37) logical_op -> . OP_OR
+    (38) logical_op -> . OP_MORE_OR_EQUAL
+    (39) logical_op -> . OP_LESS_OR_EQUAL
+    (40) logical_op -> . OP_MORE_THAN
+    (41) logical_op -> . OP_LESS_THAN
+    (42) logical_op -> . OP_NOT_EQUALS
+    (43) logical_op -> . OP_EQUALS
+
+    RPAREN          reduce using rule 21 (expression -> simple_expression .)
+    SEMI_COLON      reduce using rule 21 (expression -> simple_expression .)
+    OP_AND          shift and go to state 53
+    OP_OR           shift and go to state 54
+    OP_MORE_OR_EQUAL shift and go to state 55
+    OP_LESS_OR_EQUAL shift and go to state 56
+    OP_MORE_THAN    shift and go to state 57
+    OP_LESS_THAN    shift and go to state 58
+    OP_NOT_EQUALS   shift and go to state 59
+    OP_EQUALS       shift and go to state 60
+
+    logical_op                     shift and go to state 52
+
+state 30
+
+    (22) expression -> OP_MINUS . simple_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    simple_expression              shift and go to state 61
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 31
+
+    (23) expression -> logic_expression .
+
+    RPAREN          reduce using rule 23 (expression -> logic_expression .)
+    SEMI_COLON      reduce using rule 23 (expression -> logic_expression .)
+
+
+state 32
+
+    (24) simple_expression -> term . OP_PLUS simple_expression
+    (25) simple_expression -> term . OP_MINUS simple_expression
+    (26) simple_expression -> term .
+
+    OP_PLUS         shift and go to state 62
+    OP_MINUS        shift and go to state 63
+    OP_AND          reduce using rule 26 (simple_expression -> term .)
+    OP_OR           reduce using rule 26 (simple_expression -> term .)
+    OP_MORE_OR_EQUAL reduce using rule 26 (simple_expression -> term .)
+    OP_LESS_OR_EQUAL reduce using rule 26 (simple_expression -> term .)
+    OP_MORE_THAN    reduce using rule 26 (simple_expression -> term .)
+    OP_LESS_THAN    reduce using rule 26 (simple_expression -> term .)
+    OP_NOT_EQUALS   reduce using rule 26 (simple_expression -> term .)
+    OP_EQUALS       reduce using rule 26 (simple_expression -> term .)
+    RPAREN          reduce using rule 26 (simple_expression -> term .)
+    SEMI_COLON      reduce using rule 26 (simple_expression -> term .)
+
+
+state 33
+
+    (28) logic_expression -> OP_NOT . logic_expression
+    (27) logic_expression -> . simple_expression logical_op simple_expression
+    (28) logic_expression -> . OP_NOT logic_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    OP_NOT          shift and go to state 33
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    logic_expression               shift and go to state 64
+    simple_expression              shift and go to state 65
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 34
+
+    (29) term -> factor . OP_MULT term
+    (30) term -> factor . OP_DIVIDE term
+    (31) term -> factor . OP_MOD term
+    (32) term -> factor .
+
+    OP_MULT         shift and go to state 66
+    OP_DIVIDE       shift and go to state 67
+    OP_MOD          shift and go to state 68
+    OP_PLUS         reduce using rule 32 (term -> factor .)
+    OP_MINUS        reduce using rule 32 (term -> factor .)
+    OP_AND          reduce using rule 32 (term -> factor .)
+    OP_OR           reduce using rule 32 (term -> factor .)
+    OP_MORE_OR_EQUAL reduce using rule 32 (term -> factor .)
+    OP_LESS_OR_EQUAL reduce using rule 32 (term -> factor .)
+    OP_MORE_THAN    reduce using rule 32 (term -> factor .)
+    OP_LESS_THAN    reduce using rule 32 (term -> factor .)
+    OP_NOT_EQUALS   reduce using rule 32 (term -> factor .)
+    OP_EQUALS       reduce using rule 32 (term -> factor .)
+    RPAREN          reduce using rule 32 (term -> factor .)
+    SEMI_COLON      reduce using rule 32 (term -> factor .)
+
+
+state 35
+
+    (33) factor -> lit_value .
+
+    OP_MULT         reduce using rule 33 (factor -> lit_value .)
+    OP_DIVIDE       reduce using rule 33 (factor -> lit_value .)
+    OP_MOD          reduce using rule 33 (factor -> lit_value .)
+    OP_PLUS         reduce using rule 33 (factor -> lit_value .)
+    OP_MINUS        reduce using rule 33 (factor -> lit_value .)
+    OP_AND          reduce using rule 33 (factor -> lit_value .)
+    OP_OR           reduce using rule 33 (factor -> lit_value .)
+    OP_MORE_OR_EQUAL reduce using rule 33 (factor -> lit_value .)
+    OP_LESS_OR_EQUAL reduce using rule 33 (factor -> lit_value .)
+    OP_MORE_THAN    reduce using rule 33 (factor -> lit_value .)
+    OP_LESS_THAN    reduce using rule 33 (factor -> lit_value .)
+    OP_NOT_EQUALS   reduce using rule 33 (factor -> lit_value .)
+    OP_EQUALS       reduce using rule 33 (factor -> lit_value .)
+    RPAREN          reduce using rule 33 (factor -> lit_value .)
+    SEMI_COLON      reduce using rule 33 (factor -> lit_value .)
+
+
+state 36
+
+    (35) factor -> ID .
+
+    OP_MULT         reduce using rule 35 (factor -> ID .)
+    OP_DIVIDE       reduce using rule 35 (factor -> ID .)
+    OP_MOD          reduce using rule 35 (factor -> ID .)
+    OP_PLUS         reduce using rule 35 (factor -> ID .)
+    OP_MINUS        reduce using rule 35 (factor -> ID .)
+    OP_AND          reduce using rule 35 (factor -> ID .)
+    OP_OR           reduce using rule 35 (factor -> ID .)
+    OP_MORE_OR_EQUAL reduce using rule 35 (factor -> ID .)
+    OP_LESS_OR_EQUAL reduce using rule 35 (factor -> ID .)
+    OP_MORE_THAN    reduce using rule 35 (factor -> ID .)
+    OP_LESS_THAN    reduce using rule 35 (factor -> ID .)
+    OP_NOT_EQUALS   reduce using rule 35 (factor -> ID .)
+    OP_EQUALS       reduce using rule 35 (factor -> ID .)
+    RPAREN          reduce using rule 35 (factor -> ID .)
+    SEMI_COLON      reduce using rule 35 (factor -> ID .)
+
+
+state 37
+
+    (44) lit_value -> TRUE .
+
+    OP_MULT         reduce using rule 44 (lit_value -> TRUE .)
+    OP_DIVIDE       reduce using rule 44 (lit_value -> TRUE .)
+    OP_MOD          reduce using rule 44 (lit_value -> TRUE .)
+    OP_PLUS         reduce using rule 44 (lit_value -> TRUE .)
+    OP_MINUS        reduce using rule 44 (lit_value -> TRUE .)
+    OP_AND          reduce using rule 44 (lit_value -> TRUE .)
+    OP_OR           reduce using rule 44 (lit_value -> TRUE .)
+    OP_MORE_OR_EQUAL reduce using rule 44 (lit_value -> TRUE .)
+    OP_LESS_OR_EQUAL reduce using rule 44 (lit_value -> TRUE .)
+    OP_MORE_THAN    reduce using rule 44 (lit_value -> TRUE .)
+    OP_LESS_THAN    reduce using rule 44 (lit_value -> TRUE .)
+    OP_NOT_EQUALS   reduce using rule 44 (lit_value -> TRUE .)
+    OP_EQUALS       reduce using rule 44 (lit_value -> TRUE .)
+    RPAREN          reduce using rule 44 (lit_value -> TRUE .)
+    SEMI_COLON      reduce using rule 44 (lit_value -> TRUE .)
+
+
+state 38
+
+    (45) lit_value -> FALSE .
+
+    OP_MULT         reduce using rule 45 (lit_value -> FALSE .)
+    OP_DIVIDE       reduce using rule 45 (lit_value -> FALSE .)
+    OP_MOD          reduce using rule 45 (lit_value -> FALSE .)
+    OP_PLUS         reduce using rule 45 (lit_value -> FALSE .)
+    OP_MINUS        reduce using rule 45 (lit_value -> FALSE .)
+    OP_AND          reduce using rule 45 (lit_value -> FALSE .)
+    OP_OR           reduce using rule 45 (lit_value -> FALSE .)
+    OP_MORE_OR_EQUAL reduce using rule 45 (lit_value -> FALSE .)
+    OP_LESS_OR_EQUAL reduce using rule 45 (lit_value -> FALSE .)
+    OP_MORE_THAN    reduce using rule 45 (lit_value -> FALSE .)
+    OP_LESS_THAN    reduce using rule 45 (lit_value -> FALSE .)
+    OP_NOT_EQUALS   reduce using rule 45 (lit_value -> FALSE .)
+    OP_EQUALS       reduce using rule 45 (lit_value -> FALSE .)
+    RPAREN          reduce using rule 45 (lit_value -> FALSE .)
+    SEMI_COLON      reduce using rule 45 (lit_value -> FALSE .)
+
+
+state 39
+
+    (46) lit_value -> LIT_NUMBER .
+
+    OP_MULT         reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_DIVIDE       reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_MOD          reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_PLUS         reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_MINUS        reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_AND          reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_OR           reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_MORE_OR_EQUAL reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_LESS_OR_EQUAL reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_MORE_THAN    reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_LESS_THAN    reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_NOT_EQUALS   reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    OP_EQUALS       reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    RPAREN          reduce using rule 46 (lit_value -> LIT_NUMBER .)
+    SEMI_COLON      reduce using rule 46 (lit_value -> LIT_NUMBER .)
+
+
+state 40
+
+    (47) lit_value -> LIT_STRING .
+
+    OP_MULT         reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_DIVIDE       reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_MOD          reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_PLUS         reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_MINUS        reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_AND          reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_OR           reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_MORE_OR_EQUAL reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_LESS_OR_EQUAL reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_MORE_THAN    reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_LESS_THAN    reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_NOT_EQUALS   reduce using rule 47 (lit_value -> LIT_STRING .)
+    OP_EQUALS       reduce using rule 47 (lit_value -> LIT_STRING .)
+    RPAREN          reduce using rule 47 (lit_value -> LIT_STRING .)
+    SEMI_COLON      reduce using rule 47 (lit_value -> LIT_STRING .)
+
+
+state 41
+
+    (14) while_statement -> WHILE LPAREN expression . RPAREN CURLYLEFT program CURLYRIGHT
+
+    RPAREN          shift and go to state 69
+
+
+state 42
+
+    (15) input_statement -> READ LPAREN RPAREN . SEMI_COLON
+
+    SEMI_COLON      shift and go to state 70
+
+
+state 43
+
+    (16) output_statement -> PRINT LPAREN expression . RPAREN SEMI_COLON
+
+    RPAREN          shift and go to state 71
+
+
+state 44
+
+    (17) function_statement -> FUNCTION ID LPAREN . RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    RPAREN          shift and go to state 72
+
+
+state 45
+
+    (10) var_declaration -> LET ID OP_TYPE_ASSIGN type . OP_VALUE_ASSIGN expression SEMI_COLON
+
+    OP_VALUE_ASSIGN shift and go to state 73
+
+
+state 46
+
+    (18) type -> NUMBER .
+
+    OP_VALUE_ASSIGN reduce using rule 18 (type -> NUMBER .)
+
+
+state 47
+
+    (19) type -> BOOL .
+
+    OP_VALUE_ASSIGN reduce using rule 19 (type -> BOOL .)
+
+
+state 48
+
+    (20) type -> STRING .
+
+    OP_VALUE_ASSIGN reduce using rule 20 (type -> STRING .)
+
+
+state 49
+
+    (11) const_declaration -> CONST ID OP_TYPE_ASSIGN type . OP_VALUE_ASSIGN expression SEMI_COLON
+
+    OP_VALUE_ASSIGN shift and go to state 74
+
+
+state 50
+
+    (34) factor -> LPAREN expression . RPAREN
+
+    RPAREN          shift and go to state 75
+
+
+state 51
+
+    (12) if_statement -> IF LPAREN expression RPAREN . CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> IF LPAREN expression RPAREN . CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+
+    CURLYLEFT       shift and go to state 76
+
+
+state 52
+
+    (27) logic_expression -> simple_expression logical_op . simple_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    simple_expression              shift and go to state 77
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 53
+
+    (36) logical_op -> OP_AND .
+
+    LPAREN          reduce using rule 36 (logical_op -> OP_AND .)
+    ID              reduce using rule 36 (logical_op -> OP_AND .)
+    TRUE            reduce using rule 36 (logical_op -> OP_AND .)
+    FALSE           reduce using rule 36 (logical_op -> OP_AND .)
+    LIT_NUMBER      reduce using rule 36 (logical_op -> OP_AND .)
+    LIT_STRING      reduce using rule 36 (logical_op -> OP_AND .)
+
+
+state 54
+
+    (37) logical_op -> OP_OR .
+
+    LPAREN          reduce using rule 37 (logical_op -> OP_OR .)
+    ID              reduce using rule 37 (logical_op -> OP_OR .)
+    TRUE            reduce using rule 37 (logical_op -> OP_OR .)
+    FALSE           reduce using rule 37 (logical_op -> OP_OR .)
+    LIT_NUMBER      reduce using rule 37 (logical_op -> OP_OR .)
+    LIT_STRING      reduce using rule 37 (logical_op -> OP_OR .)
+
+
+state 55
+
+    (38) logical_op -> OP_MORE_OR_EQUAL .
+
+    LPAREN          reduce using rule 38 (logical_op -> OP_MORE_OR_EQUAL .)
+    ID              reduce using rule 38 (logical_op -> OP_MORE_OR_EQUAL .)
+    TRUE            reduce using rule 38 (logical_op -> OP_MORE_OR_EQUAL .)
+    FALSE           reduce using rule 38 (logical_op -> OP_MORE_OR_EQUAL .)
+    LIT_NUMBER      reduce using rule 38 (logical_op -> OP_MORE_OR_EQUAL .)
+    LIT_STRING      reduce using rule 38 (logical_op -> OP_MORE_OR_EQUAL .)
+
+
+state 56
+
+    (39) logical_op -> OP_LESS_OR_EQUAL .
+
+    LPAREN          reduce using rule 39 (logical_op -> OP_LESS_OR_EQUAL .)
+    ID              reduce using rule 39 (logical_op -> OP_LESS_OR_EQUAL .)
+    TRUE            reduce using rule 39 (logical_op -> OP_LESS_OR_EQUAL .)
+    FALSE           reduce using rule 39 (logical_op -> OP_LESS_OR_EQUAL .)
+    LIT_NUMBER      reduce using rule 39 (logical_op -> OP_LESS_OR_EQUAL .)
+    LIT_STRING      reduce using rule 39 (logical_op -> OP_LESS_OR_EQUAL .)
+
+
+state 57
+
+    (40) logical_op -> OP_MORE_THAN .
+
+    LPAREN          reduce using rule 40 (logical_op -> OP_MORE_THAN .)
+    ID              reduce using rule 40 (logical_op -> OP_MORE_THAN .)
+    TRUE            reduce using rule 40 (logical_op -> OP_MORE_THAN .)
+    FALSE           reduce using rule 40 (logical_op -> OP_MORE_THAN .)
+    LIT_NUMBER      reduce using rule 40 (logical_op -> OP_MORE_THAN .)
+    LIT_STRING      reduce using rule 40 (logical_op -> OP_MORE_THAN .)
+
+
+state 58
+
+    (41) logical_op -> OP_LESS_THAN .
+
+    LPAREN          reduce using rule 41 (logical_op -> OP_LESS_THAN .)
+    ID              reduce using rule 41 (logical_op -> OP_LESS_THAN .)
+    TRUE            reduce using rule 41 (logical_op -> OP_LESS_THAN .)
+    FALSE           reduce using rule 41 (logical_op -> OP_LESS_THAN .)
+    LIT_NUMBER      reduce using rule 41 (logical_op -> OP_LESS_THAN .)
+    LIT_STRING      reduce using rule 41 (logical_op -> OP_LESS_THAN .)
+
+
+state 59
+
+    (42) logical_op -> OP_NOT_EQUALS .
+
+    LPAREN          reduce using rule 42 (logical_op -> OP_NOT_EQUALS .)
+    ID              reduce using rule 42 (logical_op -> OP_NOT_EQUALS .)
+    TRUE            reduce using rule 42 (logical_op -> OP_NOT_EQUALS .)
+    FALSE           reduce using rule 42 (logical_op -> OP_NOT_EQUALS .)
+    LIT_NUMBER      reduce using rule 42 (logical_op -> OP_NOT_EQUALS .)
+    LIT_STRING      reduce using rule 42 (logical_op -> OP_NOT_EQUALS .)
+
+
+state 60
+
+    (43) logical_op -> OP_EQUALS .
+
+    LPAREN          reduce using rule 43 (logical_op -> OP_EQUALS .)
+    ID              reduce using rule 43 (logical_op -> OP_EQUALS .)
+    TRUE            reduce using rule 43 (logical_op -> OP_EQUALS .)
+    FALSE           reduce using rule 43 (logical_op -> OP_EQUALS .)
+    LIT_NUMBER      reduce using rule 43 (logical_op -> OP_EQUALS .)
+    LIT_STRING      reduce using rule 43 (logical_op -> OP_EQUALS .)
+
+
+state 61
+
+    (22) expression -> OP_MINUS simple_expression .
+
+    RPAREN          reduce using rule 22 (expression -> OP_MINUS simple_expression .)
+    SEMI_COLON      reduce using rule 22 (expression -> OP_MINUS simple_expression .)
+
+
+state 62
+
+    (24) simple_expression -> term OP_PLUS . simple_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    term                           shift and go to state 32
+    simple_expression              shift and go to state 78
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 63
+
+    (25) simple_expression -> term OP_MINUS . simple_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    term                           shift and go to state 32
+    simple_expression              shift and go to state 79
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 64
+
+    (28) logic_expression -> OP_NOT logic_expression .
+
+    RPAREN          reduce using rule 28 (logic_expression -> OP_NOT logic_expression .)
+    SEMI_COLON      reduce using rule 28 (logic_expression -> OP_NOT logic_expression .)
+
+
+state 65
+
+    (27) logic_expression -> simple_expression . logical_op simple_expression
+    (36) logical_op -> . OP_AND
+    (37) logical_op -> . OP_OR
+    (38) logical_op -> . OP_MORE_OR_EQUAL
+    (39) logical_op -> . OP_LESS_OR_EQUAL
+    (40) logical_op -> . OP_MORE_THAN
+    (41) logical_op -> . OP_LESS_THAN
+    (42) logical_op -> . OP_NOT_EQUALS
+    (43) logical_op -> . OP_EQUALS
+
+    OP_AND          shift and go to state 53
+    OP_OR           shift and go to state 54
+    OP_MORE_OR_EQUAL shift and go to state 55
+    OP_LESS_OR_EQUAL shift and go to state 56
+    OP_MORE_THAN    shift and go to state 57
+    OP_LESS_THAN    shift and go to state 58
+    OP_NOT_EQUALS   shift and go to state 59
+    OP_EQUALS       shift and go to state 60
+
+    logical_op                     shift and go to state 52
+
+state 66
+
+    (29) term -> factor OP_MULT . term
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    factor                         shift and go to state 34
+    term                           shift and go to state 80
+    lit_value                      shift and go to state 35
+
+state 67
+
+    (30) term -> factor OP_DIVIDE . term
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    factor                         shift and go to state 34
+    term                           shift and go to state 81
+    lit_value                      shift and go to state 35
+
+state 68
+
+    (31) term -> factor OP_MOD . term
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    factor                         shift and go to state 34
+    term                           shift and go to state 82
+    lit_value                      shift and go to state 35
+
+state 69
+
+    (14) while_statement -> WHILE LPAREN expression RPAREN . CURLYLEFT program CURLYRIGHT
+
+    CURLYLEFT       shift and go to state 83
+
+
+state 70
+
+    (15) input_statement -> READ LPAREN RPAREN SEMI_COLON .
+
+    LET             reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    CONST           reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    IF              reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    WHILE           reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    READ            reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    PRINT           reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    FUNCTION        reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    $end            reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    CURLYRIGHT      reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+    RETURN          reduce using rule 15 (input_statement -> READ LPAREN RPAREN SEMI_COLON .)
+
+
+state 71
+
+    (16) output_statement -> PRINT LPAREN expression RPAREN . SEMI_COLON
+
+    SEMI_COLON      shift and go to state 84
+
+
+state 72
+
+    (17) function_statement -> FUNCTION ID LPAREN RPAREN . CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    CURLYLEFT       shift and go to state 85
+
+
+state 73
+
+    (10) var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN . expression SEMI_COLON
+    (21) expression -> . simple_expression
+    (22) expression -> . OP_MINUS simple_expression
+    (23) expression -> . logic_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (27) logic_expression -> . simple_expression logical_op simple_expression
+    (28) logic_expression -> . OP_NOT logic_expression
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    OP_MINUS        shift and go to state 30
+    OP_NOT          shift and go to state 33
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    expression                     shift and go to state 86
+    simple_expression              shift and go to state 29
+    logic_expression               shift and go to state 31
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 74
+
+    (11) const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN . expression SEMI_COLON
+    (21) expression -> . simple_expression
+    (22) expression -> . OP_MINUS simple_expression
+    (23) expression -> . logic_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (27) logic_expression -> . simple_expression logical_op simple_expression
+    (28) logic_expression -> . OP_NOT logic_expression
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    OP_MINUS        shift and go to state 30
+    OP_NOT          shift and go to state 33
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    expression                     shift and go to state 87
+    simple_expression              shift and go to state 29
+    logic_expression               shift and go to state 31
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 75
+
+    (34) factor -> LPAREN expression RPAREN .
+
+    OP_MULT         reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_DIVIDE       reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_MOD          reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_PLUS         reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_MINUS        reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_AND          reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_OR           reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_MORE_OR_EQUAL reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_LESS_OR_EQUAL reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_MORE_THAN    reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_LESS_THAN    reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_NOT_EQUALS   reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    OP_EQUALS       reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+    SEMI_COLON      reduce using rule 34 (factor -> LPAREN expression RPAREN .)
+
+
+state 76
+
+    (12) if_statement -> IF LPAREN expression RPAREN CURLYLEFT . program CURLYRIGHT
+    (13) if_statement -> IF LPAREN expression RPAREN CURLYLEFT . program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+    (1) program -> . statement program
+    (2) program -> . statement
+    (3) statement -> . var_declaration
+    (4) statement -> . const_declaration
+    (5) statement -> . if_statement
+    (6) statement -> . while_statement
+    (7) statement -> . input_statement
+    (8) statement -> . output_statement
+    (9) statement -> . function_statement
+    (10) var_declaration -> . LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (11) const_declaration -> . CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (12) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+    (14) while_statement -> . WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (15) input_statement -> . READ LPAREN RPAREN SEMI_COLON
+    (16) output_statement -> . PRINT LPAREN expression RPAREN SEMI_COLON
+    (17) function_statement -> . FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    LET             shift and go to state 10
+    CONST           shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    READ            shift and go to state 14
+    PRINT           shift and go to state 15
+    FUNCTION        shift and go to state 16
+
+    program                        shift and go to state 88
+    statement                      shift and go to state 2
+    var_declaration                shift and go to state 3
+    const_declaration              shift and go to state 4
+    if_statement                   shift and go to state 5
+    while_statement                shift and go to state 6
+    input_statement                shift and go to state 7
+    output_statement               shift and go to state 8
+    function_statement             shift and go to state 9
+
+state 77
+
+    (27) logic_expression -> simple_expression logical_op simple_expression .
+
+    RPAREN          reduce using rule 27 (logic_expression -> simple_expression logical_op simple_expression .)
+    SEMI_COLON      reduce using rule 27 (logic_expression -> simple_expression logical_op simple_expression .)
+
+
+state 78
+
+    (24) simple_expression -> term OP_PLUS simple_expression .
+
+    OP_AND          reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    OP_OR           reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    OP_MORE_OR_EQUAL reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    OP_LESS_OR_EQUAL reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    OP_MORE_THAN    reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    OP_LESS_THAN    reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    OP_NOT_EQUALS   reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    OP_EQUALS       reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    RPAREN          reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+    SEMI_COLON      reduce using rule 24 (simple_expression -> term OP_PLUS simple_expression .)
+
+
+state 79
+
+    (25) simple_expression -> term OP_MINUS simple_expression .
+
+    OP_AND          reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    OP_OR           reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    OP_MORE_OR_EQUAL reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    OP_LESS_OR_EQUAL reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    OP_MORE_THAN    reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    OP_LESS_THAN    reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    OP_NOT_EQUALS   reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    OP_EQUALS       reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    RPAREN          reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+    SEMI_COLON      reduce using rule 25 (simple_expression -> term OP_MINUS simple_expression .)
+
+
+state 80
+
+    (29) term -> factor OP_MULT term .
+
+    OP_PLUS         reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_MINUS        reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_AND          reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_OR           reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_MORE_OR_EQUAL reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_LESS_OR_EQUAL reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_MORE_THAN    reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_LESS_THAN    reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_NOT_EQUALS   reduce using rule 29 (term -> factor OP_MULT term .)
+    OP_EQUALS       reduce using rule 29 (term -> factor OP_MULT term .)
+    RPAREN          reduce using rule 29 (term -> factor OP_MULT term .)
+    SEMI_COLON      reduce using rule 29 (term -> factor OP_MULT term .)
+
+
+state 81
+
+    (30) term -> factor OP_DIVIDE term .
+
+    OP_PLUS         reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_MINUS        reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_AND          reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_OR           reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_MORE_OR_EQUAL reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_LESS_OR_EQUAL reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_MORE_THAN    reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_LESS_THAN    reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_NOT_EQUALS   reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    OP_EQUALS       reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    RPAREN          reduce using rule 30 (term -> factor OP_DIVIDE term .)
+    SEMI_COLON      reduce using rule 30 (term -> factor OP_DIVIDE term .)
+
+
+state 82
+
+    (31) term -> factor OP_MOD term .
+
+    OP_PLUS         reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_MINUS        reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_AND          reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_OR           reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_MORE_OR_EQUAL reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_LESS_OR_EQUAL reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_MORE_THAN    reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_LESS_THAN    reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_NOT_EQUALS   reduce using rule 31 (term -> factor OP_MOD term .)
+    OP_EQUALS       reduce using rule 31 (term -> factor OP_MOD term .)
+    RPAREN          reduce using rule 31 (term -> factor OP_MOD term .)
+    SEMI_COLON      reduce using rule 31 (term -> factor OP_MOD term .)
+
+
+state 83
+
+    (14) while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT . program CURLYRIGHT
+    (1) program -> . statement program
+    (2) program -> . statement
+    (3) statement -> . var_declaration
+    (4) statement -> . const_declaration
+    (5) statement -> . if_statement
+    (6) statement -> . while_statement
+    (7) statement -> . input_statement
+    (8) statement -> . output_statement
+    (9) statement -> . function_statement
+    (10) var_declaration -> . LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (11) const_declaration -> . CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (12) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+    (14) while_statement -> . WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (15) input_statement -> . READ LPAREN RPAREN SEMI_COLON
+    (16) output_statement -> . PRINT LPAREN expression RPAREN SEMI_COLON
+    (17) function_statement -> . FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    LET             shift and go to state 10
+    CONST           shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    READ            shift and go to state 14
+    PRINT           shift and go to state 15
+    FUNCTION        shift and go to state 16
+
+    program                        shift and go to state 89
+    statement                      shift and go to state 2
+    var_declaration                shift and go to state 3
+    const_declaration              shift and go to state 4
+    if_statement                   shift and go to state 5
+    while_statement                shift and go to state 6
+    input_statement                shift and go to state 7
+    output_statement               shift and go to state 8
+    function_statement             shift and go to state 9
+
+state 84
+
+    (16) output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .
+
+    LET             reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    CONST           reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    IF              reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    WHILE           reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    READ            reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    PRINT           reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    FUNCTION        reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    $end            reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    CURLYRIGHT      reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+    RETURN          reduce using rule 16 (output_statement -> PRINT LPAREN expression RPAREN SEMI_COLON .)
+
+
+state 85
+
+    (17) function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT . statement RETURN expression SEMI_COLON CURLYRIGHT
+    (3) statement -> . var_declaration
+    (4) statement -> . const_declaration
+    (5) statement -> . if_statement
+    (6) statement -> . while_statement
+    (7) statement -> . input_statement
+    (8) statement -> . output_statement
+    (9) statement -> . function_statement
+    (10) var_declaration -> . LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (11) const_declaration -> . CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (12) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+    (14) while_statement -> . WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (15) input_statement -> . READ LPAREN RPAREN SEMI_COLON
+    (16) output_statement -> . PRINT LPAREN expression RPAREN SEMI_COLON
+    (17) function_statement -> . FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    LET             shift and go to state 10
+    CONST           shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    READ            shift and go to state 14
+    PRINT           shift and go to state 15
+    FUNCTION        shift and go to state 16
+
+    statement                      shift and go to state 90
+    var_declaration                shift and go to state 3
+    const_declaration              shift and go to state 4
+    if_statement                   shift and go to state 5
+    while_statement                shift and go to state 6
+    input_statement                shift and go to state 7
+    output_statement               shift and go to state 8
+    function_statement             shift and go to state 9
+
+state 86
+
+    (10) var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression . SEMI_COLON
+
+    SEMI_COLON      shift and go to state 91
+
+
+state 87
+
+    (11) const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression . SEMI_COLON
+
+    SEMI_COLON      shift and go to state 92
+
+
+state 88
+
+    (12) if_statement -> IF LPAREN expression RPAREN CURLYLEFT program . CURLYRIGHT
+    (13) if_statement -> IF LPAREN expression RPAREN CURLYLEFT program . CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+
+    CURLYRIGHT      shift and go to state 93
+
+
+state 89
+
+    (14) while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program . CURLYRIGHT
+
+    CURLYRIGHT      shift and go to state 94
+
+
+state 90
+
+    (17) function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement . RETURN expression SEMI_COLON CURLYRIGHT
+
+    RETURN          shift and go to state 95
+
+
+state 91
+
+    (10) var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .
+
+    LET             reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    CONST           reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    IF              reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    WHILE           reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    READ            reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    PRINT           reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    FUNCTION        reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    $end            reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    CURLYRIGHT      reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    RETURN          reduce using rule 10 (var_declaration -> LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+
+
+state 92
+
+    (11) const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .
+
+    LET             reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    CONST           reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    IF              reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    WHILE           reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    READ            reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    PRINT           reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    FUNCTION        reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    $end            reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    CURLYRIGHT      reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+    RETURN          reduce using rule 11 (const_declaration -> CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON .)
+
+
+state 93
+
+    (12) if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .
+    (13) if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT . ELSE CURLYLEFT program CURLYRIGHT
+
+    LET             reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    CONST           reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    IF              reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    WHILE           reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    READ            reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    PRINT           reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    FUNCTION        reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    $end            reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    CURLYRIGHT      reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    RETURN          reduce using rule 12 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    ELSE            shift and go to state 96
+
+
+state 94
+
+    (14) while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .
+
+    LET             reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    CONST           reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    IF              reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    WHILE           reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    READ            reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    PRINT           reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    FUNCTION        reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    $end            reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    CURLYRIGHT      reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+    RETURN          reduce using rule 14 (while_statement -> WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT .)
+
+
+state 95
+
+    (17) function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN . expression SEMI_COLON CURLYRIGHT
+    (21) expression -> . simple_expression
+    (22) expression -> . OP_MINUS simple_expression
+    (23) expression -> . logic_expression
+    (24) simple_expression -> . term OP_PLUS simple_expression
+    (25) simple_expression -> . term OP_MINUS simple_expression
+    (26) simple_expression -> . term
+    (27) logic_expression -> . simple_expression logical_op simple_expression
+    (28) logic_expression -> . OP_NOT logic_expression
+    (29) term -> . factor OP_MULT term
+    (30) term -> . factor OP_DIVIDE term
+    (31) term -> . factor OP_MOD term
+    (32) term -> . factor
+    (33) factor -> . lit_value
+    (34) factor -> . LPAREN expression RPAREN
+    (35) factor -> . ID
+    (44) lit_value -> . TRUE
+    (45) lit_value -> . FALSE
+    (46) lit_value -> . LIT_NUMBER
+    (47) lit_value -> . LIT_STRING
+
+    OP_MINUS        shift and go to state 30
+    OP_NOT          shift and go to state 33
+    LPAREN          shift and go to state 27
+    ID              shift and go to state 36
+    TRUE            shift and go to state 37
+    FALSE           shift and go to state 38
+    LIT_NUMBER      shift and go to state 39
+    LIT_STRING      shift and go to state 40
+
+    expression                     shift and go to state 97
+    simple_expression              shift and go to state 29
+    logic_expression               shift and go to state 31
+    term                           shift and go to state 32
+    factor                         shift and go to state 34
+    lit_value                      shift and go to state 35
+
+state 96
+
+    (13) if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE . CURLYLEFT program CURLYRIGHT
+
+    CURLYLEFT       shift and go to state 98
+
+
+state 97
+
+    (17) function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression . SEMI_COLON CURLYRIGHT
+
+    SEMI_COLON      shift and go to state 99
+
+
+state 98
+
+    (13) if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT . program CURLYRIGHT
+    (1) program -> . statement program
+    (2) program -> . statement
+    (3) statement -> . var_declaration
+    (4) statement -> . const_declaration
+    (5) statement -> . if_statement
+    (6) statement -> . while_statement
+    (7) statement -> . input_statement
+    (8) statement -> . output_statement
+    (9) statement -> . function_statement
+    (10) var_declaration -> . LET ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (11) const_declaration -> . CONST ID OP_TYPE_ASSIGN type OP_VALUE_ASSIGN expression SEMI_COLON
+    (12) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (13) if_statement -> . IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT
+    (14) while_statement -> . WHILE LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT
+    (15) input_statement -> . READ LPAREN RPAREN SEMI_COLON
+    (16) output_statement -> . PRINT LPAREN expression RPAREN SEMI_COLON
+    (17) function_statement -> . FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT
+
+    LET             shift and go to state 10
+    CONST           shift and go to state 11
+    IF              shift and go to state 12
+    WHILE           shift and go to state 13
+    READ            shift and go to state 14
+    PRINT           shift and go to state 15
+    FUNCTION        shift and go to state 16
+
+    program                        shift and go to state 100
+    statement                      shift and go to state 2
+    var_declaration                shift and go to state 3
+    const_declaration              shift and go to state 4
+    if_statement                   shift and go to state 5
+    while_statement                shift and go to state 6
+    input_statement                shift and go to state 7
+    output_statement               shift and go to state 8
+    function_statement             shift and go to state 9
+
+state 99
+
+    (17) function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON . CURLYRIGHT
+
+    CURLYRIGHT      shift and go to state 101
+
+
+state 100
+
+    (13) if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program . CURLYRIGHT
+
+    CURLYRIGHT      shift and go to state 102
+
+
+state 101
+
+    (17) function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .
+
+    LET             reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    CONST           reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    IF              reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    WHILE           reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    READ            reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    PRINT           reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    FUNCTION        reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    $end            reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    CURLYRIGHT      reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+    RETURN          reduce using rule 17 (function_statement -> FUNCTION ID LPAREN RPAREN CURLYLEFT statement RETURN expression SEMI_COLON CURLYRIGHT .)
+
+
+state 102
+
+    (13) if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .
+
+    LET             reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    CONST           reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    IF              reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    WHILE           reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    READ            reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    PRINT           reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    FUNCTION        reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    $end            reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    CURLYRIGHT      reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+    RETURN          reduce using rule 13 (if_statement -> IF LPAREN expression RPAREN CURLYLEFT program CURLYRIGHT ELSE CURLYLEFT program CURLYRIGHT .)
+

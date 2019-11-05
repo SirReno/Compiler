@@ -1,0 +1,10 @@
+(Program -> Statement)
+(Statement -> Const_Declaration)
+(Const_Declaration -> Type)
+Type -> Value: number
+(Const_Declaration -> Expression)
+(Expression -> Simple_expression)
+(Simple_expression -> Term)
+(Term -> Factor)
+(Factor -> Lit_value)
+Lit_value -> Value: 10
